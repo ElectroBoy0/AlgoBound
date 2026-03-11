@@ -1,0 +1,12 @@
+{"time":"2026-03-11T11:36:10.834759+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-03-11T11:36:11.746044+05:30","level":"INFO","msg":"stream: created new stream","id":"xsdovlpp"}
+{"time":"2026-03-11T11:36:11.746271+05:30","level":"INFO","msg":"handler: started","stream_id":"xsdovlpp"}
+{"time":"2026-03-11T11:36:11.747235+05:30","level":"INFO","msg":"stream: started","id":"xsdovlpp"}
+{"time":"2026-03-11T11:36:11.747254+05:30","level":"INFO","msg":"writer: started","stream_id":"xsdovlpp"}
+{"time":"2026-03-11T11:36:11.747281+05:30","level":"INFO","msg":"sender: started","stream_id":"xsdovlpp"}
+{"time":"2026-03-11T11:36:45.844654+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-03-11T11:36:46.562553+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-03-11T11:36:46.566943+05:30","level":"INFO","msg":"stream: closing","id":"xsdovlpp"}
+{"time":"2026-03-11T11:36:46.566981+05:30","level":"INFO","msg":"handler: closed","stream_id":"xsdovlpp"}
+{"time":"2026-03-11T11:36:46.567463+05:30","level":"INFO","msg":"sender: closed","stream_id":"xsdovlpp"}
+{"time":"2026-03-11T11:36:46.567488+05:30","level":"INFO","msg":"stream: closed","id":"xsdovlpp"}

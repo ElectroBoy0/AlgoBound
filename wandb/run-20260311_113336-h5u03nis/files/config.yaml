@@ -1,0 +1,69 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            ldwj3cu4e3o0hbslb5blbgnu93kjduq2:
+                apple: {}
+                args:
+                    - --task
+                    - dijkstra
+                    - --model
+                    - gnn
+                    - --train_size
+                    - "20"
+                    - --trials
+                    - "15"
+                    - --use_vn
+                codePath: sweep.py
+                codePathLocal: sweep.py
+                cpu_count: 10
+                cpu_count_logical: 10
+                disk:
+                    /:
+                        total: "494384795648"
+                        used: "172947763200"
+                email: hv172973@gmail.com
+                executable: /Library/Frameworks/Python.framework/Versions/3.12/bin/python3
+                host: Himanshus-MacBook-Air.local
+                memory:
+                    total: "17179869184"
+                os: macOS-26.3.1-arm64-arm-64bit
+                program: /Users/himanshuverma/project/AlgoBound v1.1/sweep.py
+                python: CPython 3.12.10
+                root: /Users/himanshuverma/project/AlgoBound v1.1
+                startedAt: "2026-03-11T06:03:36.204632Z"
+                writerId: ldwj3cu4e3o0hbslb5blbgnu93kjduq2
+        m: []
+        python_version: 3.12.10
+        t:
+            "1":
+                - 1
+                - 35
+                - 51
+                - 77
+            "2":
+                - 1
+                - 35
+                - 51
+                - 77
+            "3":
+                - 2
+                - 16
+            "4": 3.12.10
+            "5": 0.25.0
+            "10":
+                - 20
+            "12": 0.25.0
+            "13": darwin-arm64
+hidden_dim:
+    value: 32
+lr:
+    value: 0.00012489601358939365
+model:
+    value: gnn
+num_layers:
+    value: 6
+task:
+    value: dijkstra
+use_vn:
+    value: true

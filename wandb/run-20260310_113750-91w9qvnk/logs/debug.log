@@ -1,0 +1,21 @@
+2026-03-10 11:37:50,855 INFO    MainThread:8242 [wandb_init.py:setup_run_log_directory():717] Logging user logs to /Users/himanshuverma/project/AlgoBound/v2/wandb/run-20260310_113750-91w9qvnk/logs/debug.log
+2026-03-10 11:37:50,856 INFO    MainThread:8242 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to /Users/himanshuverma/project/AlgoBound/v2/wandb/run-20260310_113750-91w9qvnk/logs/debug-internal.log
+2026-03-10 11:37:50,856 INFO    MainThread:8242 [wandb_init.py:init():844] calling init triggers
+2026-03-10 11:37:50,856 INFO    MainThread:8242 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'lr': 0.0015418871819069385, 'hidden_dim': 32, 'num_layers': 4, 'task': 'dijkstra', 'model': 'gnn', '_wandb': {}}
+2026-03-10 11:37:50,856 INFO    MainThread:8242 [wandb_init.py:init():892] starting backend
+2026-03-10 11:37:50,856 INFO    MainThread:8242 [wandb_init.py:init():895] sending inform_init request
+2026-03-10 11:37:50,858 INFO    MainThread:8242 [wandb_init.py:init():903] backend started and connected
+2026-03-10 11:37:50,859 INFO    MainThread:8242 [wandb_init.py:init():973] updated telemetry
+2026-03-10 11:37:50,903 INFO    MainThread:8242 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout
+2026-03-10 11:37:52,013 INFO    MainThread:8242 [wandb_init.py:init():1042] starting run threads in backend
+2026-03-10 11:37:52,061 INFO    MainThread:8242 [wandb_run.py:_console_start():2524] atexit reg
+2026-03-10 11:37:52,061 INFO    MainThread:8242 [wandb_run.py:_redirect():2373] redirect: wrap_raw
+2026-03-10 11:37:52,061 INFO    MainThread:8242 [wandb_run.py:_redirect():2442] Wrapping output streams.
+2026-03-10 11:37:52,061 INFO    MainThread:8242 [wandb_run.py:_redirect():2465] Redirects installed.
+2026-03-10 11:37:52,062 INFO    MainThread:8242 [wandb_init.py:init():1082] run started, returning control to user process
+2026-03-10 11:38:15,894 INFO    MainThread:8242 [wandb_run.py:_finish():2291] finishing run electroboy-indian-institute-of-science-education-and-res/AlgoBound-Sweeps/91w9qvnk
+2026-03-10 11:38:15,895 INFO    MainThread:8242 [wandb_run.py:_atexit_cleanup():2490] got exitcode: 0
+2026-03-10 11:38:15,896 INFO    MainThread:8242 [wandb_run.py:_restore():2472] restore
+2026-03-10 11:38:15,896 INFO    MainThread:8242 [wandb_run.py:_restore():2478] restore done
+2026-03-10 11:38:17,913 INFO    MainThread:8242 [wandb_run.py:_footer_sync_info():3868] logging synced files

@@ -1,0 +1,9 @@
+model,eval_size,metric_value
+"Custom GNN (5L, 32D) (+Virtual Node)",20,13.049417123945933
+"Custom GNN (5L, 32D) (+Virtual Node)",40,20.41441037061738
+"Custom GNN (5L, 32D) (+Virtual Node)",80,35.95411420154964
+"Custom GNN (5L, 32D) (+Virtual Node)",120,45.94998288997934
+Champion dry-cherry-25 (+Virtual Node),20,1.2065199909512958
+Champion dry-cherry-25 (+Virtual Node),40,3.849865469583651
+Champion dry-cherry-25 (+Virtual Node),80,13.456743666409466
+Champion dry-cherry-25 (+Virtual Node),120,22.890378882037705

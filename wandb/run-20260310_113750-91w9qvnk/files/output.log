@@ -1,0 +1,10 @@
+Epoch   1/100 | Loss: 169.5809 | Early Stop Count: 0/10
+Epoch   5/100 | Loss: 8.7325 | Early Stop Count: 0/10
+Epoch  10/100 | Loss: 8.9668 | Early Stop Count: 1/10
+Epoch  15/100 | Loss: 8.5037 | Early Stop Count: 2/10
+Epoch  20/100 | Loss: 8.1175 | Early Stop Count: 2/10
+Epoch  25/100 | Loss: 7.8497 | Early Stop Count: 3/10
+Epoch  30/100 | Loss: 7.3356 | Early Stop Count: 0/10
+Epoch  35/100 | Loss: 7.2497 | Early Stop Count: 2/10
+Epoch  40/100 | Loss: 7.9509 | Early Stop Count: 7/10
+[INFO] Converged! Early stopping triggered at epoch 43.

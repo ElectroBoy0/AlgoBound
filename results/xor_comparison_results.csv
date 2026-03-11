@@ -1,0 +1,9 @@
+model,eval_size,metric_value
+Transformer,10,99.92
+Transformer,20,65.35
+Transformer,50,54.384
+Transformer,100,52.144
+LSTM,10,100.0
+LSTM,20,100.0
+LSTM,50,100.0
+LSTM,100,100.0
