@@ -26,14 +26,14 @@ For example: If a model learns how to find the shortest path on a 10-node graph,
 
 ---
 
-## ⚙️ What AlgoBound Does
+## What AlgoBound Does
 AlgoBound acts as a strict, fault-tolerant testing arena. It separates evaluation into two isolated phases to prevent "cheating" (data leakage):
 1. **Phase 1 (The Training Room):** The model is trained on procedurally generated, small-scale algorithmic tasks (e.g., sequences of length 10, or 20-node graphs). It uses Early Stopping to save its most optimal brain state.
 2. **Phase 2 (The Final Exam):** The model's weights are frozen, and it is forced to run inference on massive, unseen OOD data (e.g., sequences up to length 500, or 120-node graphs). We measure the degradation in Accuracy or Mean Absolute Error (MAE).
 
 ---
 
-## 🏛️ Supported Neural Architectures
+## Supported Neural Architectures
 The framework currently tests and benchmarks the following distinct neural architectures to isolate their specific mathematical inductive biases:
 
 ### 1. Sequence Models (Transformers & LSTMs)
@@ -67,10 +67,12 @@ Clone the repository and install the required dependencies. (We recommend using 
 git clone https://github.com/ElectroBoy0/AlgoBound.git
 cd AlgoBound
 pip install -r requirements.txt
-💻 How to Use the Framework (CLI Guide)
+```
+
+How to Use the Framework (CLI Guide)
 AlgoBound uses a highly dynamic, centralized Command Line Interface (main.py). You do not need to hardcode configurations or modify Python files to run experiments; you control the entire testing arena directly from your terminal.
 
-🎛️ Core CLI Arguments
+Core CLI Arguments
 Before diving into the modes, here are the master dials you can tune:
 
 Core Routing:
@@ -98,14 +100,16 @@ This mode is designed to generate publication-ready ablation studies. By passing
 
 Example 1: Testing Graph Routing (Dijkstra's Algorithm)
 
-Bash
+```bash
 python main.py --task dijkstra --model all --train_size 20 --eval_sizes 20 40 80 120
+```
 Output: The framework will train a shallow 3-layer GNN and our 12-layer dry-cherry-25 champion. It will automatically generate a comparative degradation curve and save it to plots/dijkstra_comparison_curve.pdf.
 
 Example 2: Testing Sequence State-Tracking (Cumulative XOR)
 
-Bash
+```bash
 python main.py --task xor --model all --train_size 10 --eval_sizes 20 50 100
+```
 Output: Evaluates Absolute Transformers, RoPE Transformers, and LSTMs, proving the parallel attention collapse.
 
 Mode 2: The Arena Mode (Custom Architecture Testing)
@@ -124,7 +128,7 @@ Additional Arena Flags:
 Example 3: Racing a Custom GNN
 Let's say you hypothesize that a 5-layer GNN with 32 dimensions is enough to solve Dijkstra on 120 nodes. You want to test it with a massive 0.05 learning rate:
 
-Bash
+```bash
 python main.py \
   --task dijkstra \
   --model gnn \
@@ -136,15 +140,17 @@ python main.py \
   --train_size 20 \
   --eval_sizes 20 40 80 120 \
   --epochs 300
-🛡️ The Champion Shield: AlgoBound's framework is fault-tolerant. In the command above, your custom model will train at lr=0.05 as requested. However, the framework will automatically "shield" the champion model and train it at its scientifically proven optimal rate (0.00112) to ensure a rigorously fair comparison.
+  ```
+The Champion Shield: AlgoBound's framework is fault-tolerant. In the command above, your custom model will train at lr=0.05 as requested. However, the framework will automatically "shield" the champion model and train it at its scientifically proven optimal rate (0.00112) to ensure a rigorously fair comparison.
 
 Mode 3: Bayesian Hyperparameter Optimization
 AlgoBound includes a dedicated Optuna script (sweep.py) to systematically discover new champion architectures. It searches across layer depth, hidden dimensions, and learning rates to minimize OOD Mean Absolute Error dynamically.
 
 Example 4: Running a 30-Trial Sweep
 
-Bash
+```bash
 python sweep.py --task dijkstra --trials 30
+```
 Output: The framework will run 30 isolated training/evaluation lifecycles, dropping the mathematically optimal hyperparameter dictionary directly into your terminal upon completion.
 
 📂 Project Structure
@@ -159,7 +165,7 @@ AlgoBound/
 ├── requirements.txt     # Python dependencies
 ├── plots/               # Auto-generated visual artifacts go here
 └── results/             # Auto-generated raw CSV data goes here
-🔬 Scientific Discoveries
+Scientific Discoveries
 Track A: Sequences (XOR & Kadane's)
 The Attention Collapse: Standard Transformers (even with relative RoPE encodings) fail to track boolean parity over long sequences due to the parallel nature of attention. LSTMs maintain perfect 100% accuracy OOD.
 
