@@ -1,0 +1,12 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Mac system files
+.DS_Store
+
+# Auto-generated outputs and logs
+checkpoints/
+plots/
+results/
+wandb/
