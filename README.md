@@ -77,23 +77,23 @@ Before diving into the modes, here are the master dials you can tune:
 
 Core Routing:
 
---task: The algorithm to test (xor, kadane, bfs, dijkstra).
+`--task`: The algorithm to test (xor, kadane, bfs, dijkstra).
 
---model: The architecture to run (transformer, lstm, gnn, rope, or all).
+`--model`: The architecture to run (transformer, lstm, gnn, rope, or all).
 
 Data & Scaling:
 
---train_size: The dimension to train on (e.g., 10 for sequence length 10 or 10-node graphs).
+`--train_size`: The dimension to train on (e.g., 10 for sequence length 10 or 10-node graphs).
 
---eval_sizes: A list of massive OOD dimensions to test on (e.g., 20 50 100 200).
+`--eval_sizes`: A list of massive OOD dimensions to test on (e.g., 20 50 100 200).
 
 Training Dynamics:
 
---epochs: Maximum training epochs (Default: 500).
+`--epochs`: Maximum training epochs (Default: 500).
 
---patience: Early stopping trigger (Default: 15 epochs without improvement).
+`--patience`: Early stopping trigger (Default: 15 epochs without improvement).
 
---lr: Learning rate (Default: 0.00112).
+`--lr`: Learning rate (Default: 0.00112).
 
 ***Mode 1: The Publication Benchmark (Baseline vs. Champion)***
 
@@ -119,13 +119,13 @@ Want to test your own architectural theory? You can spin up a custom "mutant" mo
 
 Additional Arena Flags:
 
---num_layers: Depth of your custom network.
+`--num_layers`: Depth of your custom network.
 
---hidden_dim: Width of your custom network.
+`--hidden_dim`: Width of your custom network.
 
---use_vn: Injects a Virtual Master Node into your GNN.
+`--use_vn`: Injects a Virtual Master Node into your GNN.
 
---compare_champion: Automatically spawns the optimized champion model to race against your custom build.
+`--compare_champion`: Automatically spawns the optimized champion model to race against your custom build.
 
 Example 3: Racing a Custom GNN
 Let's say you hypothesize that a 5-layer GNN with 32 dimensions is enough to solve Dijkstra on 120 nodes. You want to test it with a massive 0.05 learning rate:
