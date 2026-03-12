@@ -51,7 +51,7 @@ Tested on **Breadth-First Search (BFS)** and **Dijkstra's Algorithm** for spatia
 
 ---
 
-## ✨ Key Features
+## Key Features
 * **Unified CLI Switchboard:** A single `main.py` entry point controls all tasks, models, and data generation.
 * **Dynamic Arena Mode:** Spin up custom "mutant" architectures via the command line and automatically race them against optimized Champion models.
 * **Optuna Integration:** Automated Bayesian hyperparameter sweeps (`sweep.py`) to discover theoretically optimal learning rates and architectures.
@@ -59,7 +59,7 @@ Tested on **Breadth-First Search (BFS)** and **Dijkstra's Algorithm** for spatia
 
 ---
 
-## 🛠️ Installation
+## Installation
 
 Clone the repository and install the required dependencies. (We recommend using a virtual environment like `conda` or `venv`).
 
@@ -69,7 +69,7 @@ cd AlgoBound
 pip install -r requirements.txt
 ```
 
-How to Use the Framework (CLI Guide)
+***How to Use the Framework (CLI Guide)***
 AlgoBound uses a highly dynamic, centralized Command Line Interface (main.py). You do not need to hardcode configurations or modify Python files to run experiments; you control the entire testing arena directly from your terminal.
 
 Core CLI Arguments
@@ -95,7 +95,7 @@ Training Dynamics:
 
 --lr: Learning rate (Default: 0.00112).
 
-Mode 1: The Publication Benchmark (Baseline vs. Champion)
+***Mode 1: The Publication Benchmark (Baseline vs. Champion)***
 This mode is designed to generate publication-ready ablation studies. By passing --model all, the framework will sequentially train a standard baseline architecture and our scientifically optimized "Champion" architecture. It will then test them both on the exact same OOD data splits.
 
 Example 1: Testing Graph Routing (Dijkstra's Algorithm)
@@ -112,7 +112,7 @@ python main.py --task xor --model all --train_size 10 --eval_sizes 20 50 100
 ```
 Output: Evaluates Absolute Transformers, RoPE Transformers, and LSTMs, proving the parallel attention collapse.
 
-Mode 2: The Arena Mode (Custom Architecture Testing)
+***Mode 2: The Arena Mode (Custom Architecture Testing)***
 Want to test your own architectural theory? You can spin up a custom "mutant" model directly in the terminal and physically race it against the reigning champion.
 
 Additional Arena Flags:
@@ -143,7 +143,7 @@ python main.py \
   ```
 The Champion Shield: AlgoBound's framework is fault-tolerant. In the command above, your custom model will train at lr=0.05 as requested. However, the framework will automatically "shield" the champion model and train it at its scientifically proven optimal rate (0.00112) to ensure a rigorously fair comparison.
 
-Mode 3: Bayesian Hyperparameter Optimization
+***Mode 3: Bayesian Hyperparameter Optimization***
 AlgoBound includes a dedicated Optuna script (sweep.py) to systematically discover new champion architectures. It searches across layer depth, hidden dimensions, and learning rates to minimize OOD Mean Absolute Error dynamically.
 
 Example 4: Running a 30-Trial Sweep
@@ -153,8 +153,8 @@ python sweep.py --task dijkstra --trials 30
 ```
 Output: The framework will run 30 isolated training/evaluation lifecycles, dropping the mathematically optimal hyperparameter dictionary directly into your terminal upon completion.
 
-📂 Project Structure
-Plaintext
+***Project Structure***
+```plaintext
 AlgoBound/
 ├── main.py              # The core CLI switchboard and experiment router
 ├── models.py            # Neural architectures (GNNs, Transformers, LSTMs)
@@ -165,13 +165,14 @@ AlgoBound/
 ├── requirements.txt     # Python dependencies
 ├── plots/               # Auto-generated visual artifacts go here
 └── results/             # Auto-generated raw CSV data goes here
-Scientific Discoveries
-Track A: Sequences (XOR & Kadane's)
-The Attention Collapse: Standard Transformers (even with relative RoPE encodings) fail to track boolean parity over long sequences due to the parallel nature of attention. LSTMs maintain perfect 100% accuracy OOD.
+```
+***Scientific Discoveries***
+***Track A: Sequences (XOR & Kadane's)***
+***The Attention Collapse***: Standard Transformers (even with relative RoPE encodings) fail to track boolean parity over long sequences due to the parallel nature of attention. LSTMs maintain perfect 100% accuracy OOD.
 
-The Continuous Memory Leak: While LSTMs dominate boolean logic, they suffer massive degradation when accumulating floating-point values over long time horizons (Kadane's algorithm).
+***The Continuous Memory Leak***: While LSTMs dominate boolean logic, they suffer massive degradation when accumulating floating-point values over long time horizons (Kadane's algorithm).
 
-Track B: Graphs (BFS & Dijkstra's)
-The Receptive Field Trap: Standard 3-layer GNNs fail on massive graphs because information physically cannot travel further than 3 edges.
+***Track B: Graphs (BFS & Dijkstra's)***
+***The Receptive Field Trap***: Standard 3-layer GNNs fail on massive graphs because information physically cannot travel further than 3 edges.
 
-The Solution: By combining a 12-layer deep GNN with a Virtual Node (an artificial hub connected to all nodes), AlgoBound successfully bridges distant nodes and drastically reduces OOD degradation on massive 120-node graphs.
+***The Solution***: By combining a 12-layer deep GNN with a Virtual Node (an artificial hub connected to all nodes), AlgoBound successfully bridges distant nodes and drastically reduces OOD degradation on massive 120-node graphs.
