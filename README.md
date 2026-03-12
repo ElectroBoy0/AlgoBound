@@ -96,6 +96,7 @@ Training Dynamics:
 --lr: Learning rate (Default: 0.00112).
 
 ***Mode 1: The Publication Benchmark (Baseline vs. Champion)***
+
 This mode is designed to generate publication-ready ablation studies. By passing --model all, the framework will sequentially train a standard baseline architecture and our scientifically optimized "Champion" architecture. It will then test them both on the exact same OOD data splits.
 
 Example 1: Testing Graph Routing (Dijkstra's Algorithm)
@@ -113,6 +114,7 @@ python main.py --task xor --model all --train_size 10 --eval_sizes 20 50 100
 Output: Evaluates Absolute Transformers, RoPE Transformers, and LSTMs, proving the parallel attention collapse.
 
 ***Mode 2: The Arena Mode (Custom Architecture Testing)***
+
 Want to test your own architectural theory? You can spin up a custom "mutant" model directly in the terminal and physically race it against the reigning champion.
 
 Additional Arena Flags:
@@ -144,6 +146,7 @@ python main.py \
 The Champion Shield: AlgoBound's framework is fault-tolerant. In the command above, your custom model will train at lr=0.05 as requested. However, the framework will automatically "shield" the champion model and train it at its scientifically proven optimal rate (0.00112) to ensure a rigorously fair comparison.
 
 ***Mode 3: Bayesian Hyperparameter Optimization***
+
 AlgoBound includes a dedicated Optuna script (sweep.py) to systematically discover new champion architectures. It searches across layer depth, hidden dimensions, and learning rates to minimize OOD Mean Absolute Error dynamically.
 
 Example 4: Running a 30-Trial Sweep
@@ -167,12 +170,15 @@ AlgoBound/
 └── results/             # Auto-generated raw CSV data goes here
 ```
 ***Scientific Discoveries***
+
 ***Track A: Sequences (XOR & Kadane's)***
+
 ***The Attention Collapse***: Standard Transformers (even with relative RoPE encodings) fail to track boolean parity over long sequences due to the parallel nature of attention. LSTMs maintain perfect 100% accuracy OOD.
 
 ***The Continuous Memory Leak***: While LSTMs dominate boolean logic, they suffer massive degradation when accumulating floating-point values over long time horizons (Kadane's algorithm).
 
 ***Track B: Graphs (BFS & Dijkstra's)***
+
 ***The Receptive Field Trap***: Standard 3-layer GNNs fail on massive graphs because information physically cannot travel further than 3 edges.
 
 ***The Solution***: By combining a 12-layer deep GNN with a Virtual Node (an artificial hub connected to all nodes), AlgoBound successfully bridges distant nodes and drastically reduces OOD degradation on massive 120-node graphs.
