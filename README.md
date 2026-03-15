@@ -156,18 +156,6 @@ python sweep.py --task dijkstra --trials 30
 ```
 Output: The framework will run 30 isolated training/evaluation lifecycles, dropping the mathematically optimal hyperparameter dictionary directly into your terminal upon completion.
 
-***Project Structure***
-```plaintext
-AlgoBound/
-├── main.py              # The core CLI switchboard and experiment router
-├── models.py            # Neural architectures (GNNs, Transformers, LSTMs)
-├── datasets.py          # Procedural OOD data generation engines
-├── trainer.py           # PyTorch training/evaluation loops with Early Stopping
-├── sweep.py             # Optuna hyperparameter optimization script
-├── utils.py             # Helper functions for reproducibility and PDF plotting
-├── requirements.txt     # Python dependencies
-├── plots/               # Auto-generated visual artifacts go here
-└── results/             # Auto-generated raw CSV data goes here
 ```
 ***Scientific Discoveries***
 
