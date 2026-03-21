@@ -1,11 +1,13 @@
-# models.py
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
 from torch_geometric.nn import GCNConv, MessagePassing
 
+# ==========================================
 # --- SEQUENCE MODELS ---
+# ==========================================
+
 class SmallTransformer(nn.Module):
     def __init__(self, vocab_size=2, d_model=64, nhead=4, num_layers=2, max_seq_len=10000):
         super().__init__()
@@ -85,7 +87,7 @@ class RoPETransformer(nn.Module):
         self.embedding = nn.Embedding(vocab_size, d_model)
         self.blocks = nn.ModuleList([RoPETransformerBlock(d_model, num_heads) for _ in range(num_layers)])
         self.ln_f = nn.LayerNorm(d_model)
-        self.fc_out = nn.Linear(d_model, vocab_size) # Changed to match vocab_size dynamically
+        self.fc_out = nn.Linear(d_model, vocab_size) 
         
     def forward(self, x):
         x = self.embedding(x)
@@ -113,7 +115,10 @@ class KadaneLSTM(nn.Module):
         lstm_out, _ = self.lstm(x)
         return self.fc(lstm_out).squeeze(-1)
 
+# ==========================================
 # --- GRAPH MODELS ---
+# ==========================================
+
 class SimpleMPNN(nn.Module):
     def __init__(self, node_feature_dim=1, hidden_dim=32, num_classes=1):
         super().__init__()
@@ -150,4 +155,65 @@ class DijkstraGNN(nn.Module):
         for layer in self.layers: x = layer(x, edge_index, edge_attr)
         return self.fc(x).squeeze(-1)
 
+# ==========================================
+# --- STATE SPACE MODELS (MAMBA) ---
+# ==========================================
 
+class SimplifiedMambaBlock(nn.Module):
+    """
+    A pure-PyTorch implementation of a Selective State Space Model.
+    Stabilized with negative state initializations and proper exponential discretization.
+    """
+    def __init__(self, d_model, d_state=16):
+        super().__init__()
+        self.d_model = d_model
+        self.d_state = d_state
+
+        # FIX 1: Stable Initialization. 'A' must be strictly negative to prevent exploding states!
+        self.A = nn.Parameter(-torch.rand(d_model, d_state) - 0.5) 
+        self.B = nn.Linear(d_model, d_state, bias=False)
+        self.C = nn.Parameter(torch.randn(d_model, d_state) * 0.1) 
+        self.D = nn.Parameter(torch.randn(d_model) * 0.1)
+        
+        self.delta = nn.Linear(d_model, d_model)
+
+    def forward(self, x):
+        batch_size, seq_len, _ = x.shape
+        h = torch.zeros(batch_size, self.d_model, self.d_state, device=x.device)
+        outputs = []
+        
+        for t in range(seq_len):
+            xt = x[:, t, :] 
+            dt = F.softplus(self.delta(xt)) 
+            dt_unsqueeze = dt.unsqueeze(-1) 
+            
+            # FIX 2: Proper Discretization using torch.exp() guarantees values stay bounded
+            A_bar = torch.exp(dt_unsqueeze * self.A.unsqueeze(0)) 
+            B_bar = dt_unsqueeze * self.B(xt).unsqueeze(1)      
+            
+            h = A_bar * h + B_bar
+            yt = (h * self.C).sum(dim=-1) + self.D * xt
+            outputs.append(yt.unsqueeze(1))
+            
+        return torch.cat(outputs, dim=1)
+
+class MambaModel(nn.Module):
+    def __init__(self, input_dim=2, hidden_dim=64, output_dim=2, num_layers=2):
+        super().__init__()
+        # Using Embedding to align with how your Transformers handle the XOR vocab
+        self.embedding = nn.Embedding(input_dim, hidden_dim)
+        
+        # Stack the Mamba blocks
+        self.layers = nn.ModuleList([SimplifiedMambaBlock(hidden_dim) for _ in range(num_layers)])
+        
+        self.fc = nn.Linear(hidden_dim, output_dim)
+
+    def forward(self, x):
+        # x is expected to be token indices (batch_size, seq_len)
+        x = self.embedding(x)
+        
+        for layer in self.layers:
+            x = layer(x)
+            
+        # Extract the sequence states for classification
+        return self.fc(x)

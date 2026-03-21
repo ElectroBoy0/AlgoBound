@@ -1,4 +1,3 @@
-# main.py
 import argparse
 import torch
 from torch.utils.data import DataLoader as StdDataLoader
@@ -21,7 +20,7 @@ def get_parser():
     core = parser.add_argument_group("🎯 Core Settings")
     core.add_argument("--task", type=str, required=True, choices=["xor", "bfs", "dijkstra", "kadane"], 
                       help="The algorithmic reasoning task to evaluate.")
-    core.add_argument("--model", type=str, required=True, choices=["transformer", "lstm", "gnn", "rope", "all"], 
+    core.add_argument("--model", type=str, required=True, choices=["transformer", "lstm", "gnn", "rope", "all", "mamba"], 
                       help="The neural architecture to test ('all' runs a comparative benchmark).")
     
     # --- 2. DATA & SCALING ---
@@ -62,12 +61,13 @@ def main():
     # DataLoader Type
     DataLoader = PyGDataLoader if args.task in ['bfs', 'dijkstra'] else StdDataLoader
 
-    # 1. Multi-Model Factory (Updated for Virtual Node Ablation & Arena Mode)
+    # 1. Multi-Model Factory (Updated for Virtual Node Ablation, Arena Mode, & Mamba)
     models_to_run = {}
     if args.task == 'xor':
         if args.model in ['transformer', 'all']: models_to_run['Transformer (Absolute PE)'] = models.SmallTransformer()
         if args.model in ['lstm', 'all']: models_to_run['LSTM'] = models.SmallLSTM()
         if args.model in ['rope', 'all']: models_to_run['Transformer (RoPE)'] = models.RoPETransformer()
+        if args.model in ['mamba', 'all']: models_to_run['Mamba (SSM)'] = models.MambaModel(input_dim=2, hidden_dim=64, output_dim=2, num_layers=2)
     elif args.task == 'kadane':
         if args.model in ['lstm', 'all']: models_to_run['LSTM'] = models.KadaneLSTM()
     elif args.task in ['bfs', 'dijkstra']:
