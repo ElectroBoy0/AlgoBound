@@ -156,7 +156,7 @@ python sweep.py --task dijkstra --trials 30
 ```
 Output: The framework will run 30 isolated training/evaluation lifecycles, dropping the mathematically optimal hyperparameter dictionary directly into your terminal upon completion.
 
-```
+
 ***Scientific Discoveries***
 
 ***Track A: Sequences (XOR & Kadane's)***
